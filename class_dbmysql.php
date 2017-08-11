@@ -6,16 +6,11 @@ class dbmysql {
 	public $netclass = null;
 	public $neturlist = null;
 	function connect($dbhost, $dbuser, $dbpw, $dbname = '', $dbcharset = '', $pconnect = 0) {
-		//if ($pconnect) {
-		//	if (!$this->link = mysql_pconnect($dbhost, $dbuser, $dbpw)) {
-		//		$this->halt('Can not connect to MySQL server');
-		//	}
-		//} else {
-			//$con = mysqli_connect('localhost', 'username', 'password', 'database');
+		
 			if (!$this->link = mysqli_connect($dbhost, $dbuser, $dbpw ,$dbname)) {
 				$this->halt('Can not connect to MySQL server');
 			}
-		//}
+		
 		if ($this->version() > '4.1') {
 			if ($dbcharset) {
 				mysqli_query($this->link,"SET character_set_connection=" . $dbcharset . ", character_set_results=" . $dbcharset . ", character_set_client=binary");
